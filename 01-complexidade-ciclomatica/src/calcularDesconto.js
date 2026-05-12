@@ -1,22 +1,20 @@
+const descontoStrategy = {
+  premium: (valor, anosCadastro) => {
+    if (valor <= 500) return valor * 0.05;
+    if (valor <= 1000) return valor * 0.10;
+    if (anosCadastro > 5) return valor * 0.20;
+    return valor * 0.15;
+  },
+  gold: (valor) => {
+    if (valor > 1000) return valor * 0.10;
+    return valor * 0.02;
+  }
+};
+
 function calcularDesconto(cliente, valor) {
-  if (cliente.tipo === 'premium') {
-    if (valor > 1000) {
-      if (cliente.anosCadastro > 5) {
-        return valor * 0.20;
-      } else {
-        return valor * 0.15;
-      }
-    } else if (valor > 500) {
-      return valor * 0.10;
-    } else {
-      return valor * 0.05;
-    }
-  } else if (cliente.tipo === 'gold') {
-    if (valor > 1000) {
-      return valor * 0.10;
-    } else {
-      return valor * 0.02;
-    }
+  const operacao = descontoStrategy[cliente.tipo];
+  if (operacao) {
+    return operacao(valor, cliente.anosCadastro);
   }
   return 0;
 }
