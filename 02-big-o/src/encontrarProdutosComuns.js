@@ -2,12 +2,12 @@
  * ❌ OTIMIZAÇÃO O(n²) para O(n)
  */
 function encontrarProdutosComuns(listaA, listaB) {
+  const aSet = new Set(listaA);
+  const bSet = new Set(listaB);
   const comuns = [];
-  for (let i = 0; i < listaA.length; i++) {
-    for (let j = 0; j < listaB.length; j++) {
-      if (listaA[i] === listaB[j]) {
-        comuns.push(listaA[i]);
-      }
+  for (const item of aSet) {
+    if (bSet.has(item)) {
+      comuns.push(item);
     }
   }
   return comuns;

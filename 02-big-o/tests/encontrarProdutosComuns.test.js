@@ -8,7 +8,7 @@ describe("Desafio 2: Big-O", () => {
   });
 
   test("Deve ser eficiente com listas grandes (O(n))", () => {
-    const a = Array.from({ length: 10000 }, (_, i) => i);
+    const a = Array.from({ length: 100000 }, (_, i) => i);
     const b = [9999, 10001];
     const start = Date.now();
     encontrarProdutosComuns(a, b);
